@@ -17,8 +17,8 @@ path_1 = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt' #add your path 
 path = path_1+'/mouse_liver_noGH/mice.h5ad'
 adata = ad.read_h5ad(path)
 cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
-# cs_df_pos = cs_df + 6
 '''Dataset for NMF'''
+# cs_df_pos = cs_df + 6
 # cs_log1_df = adata.obsm['centered_study_log+1'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 # cs_log1_df_pos = cs_log1_df+5
 
