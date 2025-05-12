@@ -182,3 +182,25 @@ def residual_dummy(data, data_dummy_1 ,columns):
     prediction = model.predict(data_dummy)
     residual = (data - prediction)
     return residual
+def visualization_of_dec_tools_3d(dec, data, label, x=1, y=2, z=3, c_map='tab20'):
+    dec = dec
+    X_dec = dec.fit_transform(data)
+    
+    fig = plt.figure(figsize=(8, 7))
+    ax = fig.add_subplot(111, projection='3d')
+    scatter = ax.scatter(X_dec[:,x-1],X_dec[:,y-1],X_dec[:,z-1], c=pd.Series(data.index).astype('category').cat.codes, cmap=c_map,
+                            s=30, edgecolors='black', linewidths=0.15)
+    ax.set_xlabel('PC'+str(x),fontweight='bold')
+    ax.set_ylabel('PC'+str(y),fontweight='bold')
+    ax.set_zlabel('PC'+str(z),fontweight='bold')
+
+    plt.legend(
+        scatter.legend_elements(prop='colors', num=None)[0],
+        data.index.unique(),
+        loc="center left",
+        title=label,
+        bbox_to_anchor=(1, 0.5),)
+    ax.tick_params(labelbottom=False, labelleft=False)
+
+    plt.show()
+    return None

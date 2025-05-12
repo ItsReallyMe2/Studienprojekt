@@ -68,6 +68,7 @@ adata.var['Symbol'] = tpm_df.set_index('Name')['Symbol']
 
 #Adding log10 transformed data
 adata.layers['log_trasformed'] = np.log10(adata.X + 0.1)
+adata.layers['log+1_trasformed'] = np.log10(adata.X + 1)
 
 #Save anndata object as file
 # adata.write('/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/mice.h5ad', compression='gzip')

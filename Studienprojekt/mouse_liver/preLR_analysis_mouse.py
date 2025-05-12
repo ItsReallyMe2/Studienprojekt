@@ -6,7 +6,7 @@ import PCA_func as pc
 import color_map as cc
 
 #Import anndata object
-path_1 = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH' #add your path to the project
+path_1 = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt' #add your path to the project
 path = path_1+'/mouse_liver_noGH/mice.h5ad'
 adata = ad.read_h5ad(path)
 
