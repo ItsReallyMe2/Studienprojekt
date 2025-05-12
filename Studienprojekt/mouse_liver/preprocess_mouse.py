@@ -5,7 +5,7 @@ from pprint import pprint as pp
 import matplotlib.pyplot as plt
 
 #Import anndata object
-path = '/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/mice.h5ad'
+path = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/mice.h5ad'
 adata = ad.read_h5ad(path)
 
 '''Reducing the feature space based on the mean and std'''
@@ -28,4 +28,4 @@ adataX_df_mean_std_2 = adataX_df_mean_2.T[adataX_df_mean_2.std()>0.42].T
 adata.obsm['small_reduction'] = adataX_df_mean_std_1 # 12352 transcripts
 adata.obsm['strong_reduction'] = adataX_df_mean_std_2 # 2141 transcripts
 '''Save anndata object'''
-# adata.write('/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/mice.h5ad', compression='gzip')
+# adata.write('/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/mice.h5ad', compression='gzip')

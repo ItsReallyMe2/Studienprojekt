@@ -4,10 +4,10 @@ import anndata as ad
 from pprint import pprint as pp
 
 '''Assign the dataset path to variables'''
-num_reads = '/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/supplemental/num_reads.by_sample.txt.gz'
-tpm = '/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/supplemental/tpm.by_sample.txt.gz'
-sample_metadata = '/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/supplemental/sample_metadata.txt'
-study_metadata = '/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/supplemental/study_metadata.txt'
+num_reads = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/supplemental/num_reads.by_sample.txt.gz'
+tpm = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/supplemental/tpm.by_sample.txt.gz'
+sample_metadata = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/supplemental/sample_metadata.txt'
+study_metadata = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/supplemental/study_metadata.txt'
 
 '''Open datasets as DataFrame'''
 num_reads_df = pd.read_csv(num_reads, compression='gzip', sep='\t')
@@ -70,4 +70,4 @@ adata.var['Symbol'] = tpm_df.set_index('Name')['Symbol']
 adata.layers['log_trasformed'] = np.log10(adata.X + 0.1)
 
 #Save anndata object as file
-# adata.write('/Users/maksimsgolubovics/Python_VScode_1/Studienprojekt/mouse_liver_noGH/mice.h5ad', compression='gzip')
+# adata.write('/Users/maksimsgolubovics/Python_VScode/Studienprojekt/mouse_liver_noGH/mice.h5ad', compression='gzip')
