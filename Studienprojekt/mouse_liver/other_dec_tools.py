@@ -47,9 +47,9 @@ cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(
 
 '''Non Linear Decompositional tools'''
 '''t-SNE'''
-# pc.visualization_of_dec_tools_3d(dec=TSNE(n_components=3, random_state= 32), data=cs_df, label='Time in h', c_map='twilight')
+#pc.visualization_of_dec_tools_3d(dec=TSNE(n_components=3, random_state= 32, perplexity=5), data=cs_df, label='Time in h', c_map='twilight')
 '''FastICA'''
 # pc.visualization_of_dec_tools_3d(dec=FastICA(n_components=3), data=cs_df, label='Time in h')
 # pc.visualization_of_dec_tools_3d(dec=FastICA(n_components=3), data=cs_df, label='Time in h', c_map='twilight')
 '''UMAP'''
-# pc.visualization_of_dec_tools_3d(dec=um.UMAP(n_components=3), data=cs_df, label='Time in h', c_map='twilight')
+pc.visualization_of_dec_tools_3d(dec=um.UMAP(n_components=3), data=cs_df, label='Time in h', c_map='twilight')

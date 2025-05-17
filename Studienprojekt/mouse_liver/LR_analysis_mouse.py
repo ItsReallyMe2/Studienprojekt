@@ -52,11 +52,28 @@ sr_df_time_setup = sr_df.join(adata.obs['time'])
 # x_0=pc.residual_dummy(data=sr_df, data_dummy_1=adata.obs['Sex'], columns='Sex')#.join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 # x_1=pc.residual_dummy(data=x_0, data_dummy_1=adata.obs['Light'], columns='Light')#.join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 # x_2=pc.residual_dummy(data=x_1, data_dummy_1=adata.obs['Age (weeks)'], columns='Age (weeks)')#.join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
-# x_3=pc.residual_dummy(data=x_2, data_dummy_1=adata.obs['Sequencing Type'], columns='Sequencing Type').join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
-# #x_4=pc.residual_dummy(data=x_3, data_dummy_1=adata.obs['Note'], columns='Note')#.join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
+# #x_3=pc.residual_dummy(data=x_2, data_dummy_1=adata.obs['Sequencing Type'], columns='Sequencing Type')#.join(adata.obs['time'])#.reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
+# x_4=pc.residual_dummy(data=x_2, data_dummy_1=adata.obs['Note'], columns='Note').join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 # #x_5=pc.residual_dummy(data=x_4, data_dummy_1=adata.obs['Inferred Sequencing Type'], columns='Inferred Sequencing Type')#.join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 # #x_6 = pc.residual_dummy(data=x_5, data_dummy_1=adata.obs['study'], columns='study').join(adata.obs['time']).reset_index()#.drop(columns='index').set_index('time').sort_index(ascending=True)
-# pc.principal_component_3d_timesample(data=x_3, label='Time in h', c_map='twilight')
+# pc.principal_component_3d_timesample(data=x_4, label='Time in h', c_map='twilight')
+'''Category comperission all without study, outlier and time'''
+# pp(adata.obs)
+# obs = adata.obs.drop(['outlier', 'study', 'time'], axis=1)
+# obs['combined'] = obs.astype(str).agg('_'.join, axis=1)
+# pp(obs['combined'].unique())
+'''Category comperission all without study, outlier, time, note'''
+# obs = adata.obs.drop(['outlier', 'study', 'time', 'Note'], axis=1)
+# pp(obs)
+# obs['combined'] = obs.astype(str).agg('_'.join, axis=1)
+# pp(obs['combined'].unique())
+'''Category comperission all without study, outlier, time, note, Inferred Sequencing Type'''
+# obs = adata.obs.drop(['outlier', 'study', 'time', 'Note', 'Inferred Sequencing Type'], axis=1)
+# pp(obs)
+# obs['combined'] = obs.astype(str).agg('_'.join, axis=1)
+# pp(obs['combined'].unique().shape)
+
+pp(sr_df)
 
 '''Strong reduced dataset also log transformed''' # uncomment following datasets as necessary
 # sr_df = adata.obsm['strong_reduction']
