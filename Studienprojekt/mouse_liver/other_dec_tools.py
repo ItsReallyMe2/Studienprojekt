@@ -11,12 +11,16 @@ from sklearn.decomposition import FastICA
 from sklearn.decomposition import NMF
 from sklearn.manifold import TSNE
 import umap as um
+from sklearn.cluster import DBSCAN
 
 '''Open DataSets'''
 path_1 = '/Users/maksimsgolubovics/Python_VScode/Studienprojekt' #add your path to the project
 path = path_1+'/mouse_liver_noGH/mice.h5ad'
 adata = ad.read_h5ad(path)
-cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
+#cs_df_r = adata.obsm['small_reduction'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
+#cs_df_r_study = adata.obsm['small_reduction'].join(adata.obs['study']).reset_index().drop(columns='index').set_index('study').sort_index(ascending=True)
+cs_df_r_time = adata.obsm['small_reduction'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
+#cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
 '''Dataset for NMF'''
 # cs_df_pos = cs_df + 6
 # cs_log1_df = adata.obsm['centered_study_log+1'].join(adata.obs['time']).reset_index().drop(columns='index').set_index('time').sort_index(ascending=True)
@@ -24,7 +28,7 @@ cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(
 
 '''Linear Decompositional tools'''
 '''PCA as baseline'''
-# pc.principal_component_3d_timesample(data=cs_log1_df_pos, label='Time in h')
+#pc.principal_component_3d_timesample(data=cs_df_r, label='Time in h')
 '''PCA with randomized SVD'''
 # pc.visualization_of_dec_tools_3d(dec=PCA(svd_solver='randomized'), data=cs_df, label='Time in h')
 '''TruncatedSVD'''
@@ -52,4 +56,12 @@ cs_df = adata.obsm['centered_study'].join(adata.obs['time']).reset_index().drop(
 # pc.visualization_of_dec_tools_3d(dec=FastICA(n_components=3), data=cs_df, label='Time in h')
 # pc.visualization_of_dec_tools_3d(dec=FastICA(n_components=3), data=cs_df, label='Time in h', c_map='twilight')
 '''UMAP'''
-pc.visualization_of_dec_tools_3d(dec=um.UMAP(n_components=3), data=cs_df, label='Time in h', c_map='twilight')
+#pc.visualization_of_dec_tools_3d(dec=um.UMAP(n_components=3), data=cs_df_r_study, label='Time in h', c_map=cc.custom_cmap_func(var_name='c_34'))
+umap = um.UMAP(n_components=3)
+X_umap = umap.fit_transform(cs_df_r_time)
+dbscan = DBSCAN(eps=0.38, n_jobs=-1)
+clusters = dbscan.fit_predict(X_umap)
+pp(np.unique(clusters))
+cs_df_r_time['clusters'] = clusters
+pp(cs_df_r_time)
+#pc.residual(data=cs_df_r_time, columns='clusters')
