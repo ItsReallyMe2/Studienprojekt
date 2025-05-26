@@ -11,7 +11,7 @@ And additionally saved again as mice.h5ad.
 
 Next the analysis was subdivided into two files first 
 without using linear regression to center the data and after using linear regression, 
-the files are called preLR_analysis_mouse.py and LR_analysis_mouse.py respectively.
+the files are called pca_analysis_mouse.py and centered_pca_analysis_mouse.py respectively.
 
 Additional files like PCA_func.py and color_map.py. 
 Contain custom functions and color maps that were created by me and used in the project.
