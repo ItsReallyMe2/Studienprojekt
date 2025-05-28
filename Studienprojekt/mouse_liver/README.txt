@@ -13,5 +13,8 @@ Next the analysis was subdivided into two files first
 without using linear regression to center the data and after using linear regression, 
 the files are called pca_mouse.py and centered_pca_mouse.py respectively.
 
+The cofe.ipynb file is a Jupyter Notebook where I succsefully applied unsupervised ML tool COFE 
+on mouse liver dataset. 
+
 Additional files like PCA_func.py and color_map.py. 
 Contain custom functions and color maps that were created by me and used in the project.

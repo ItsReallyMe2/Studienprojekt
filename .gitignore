@@ -2,9 +2,9 @@
 __pycache__
 .venv
 mouse_liver_noGH
-COFE
-COFE_1
 .gitignore
 Studienprojekt.todo
 .DS_Store
-COFE_datasets
+COFE_play_datasets
+rnaseq_datasets
+mouse_liver_datasets
