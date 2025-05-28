@@ -12,13 +12,14 @@ sr_df = adata.obsm['small_reduction'] # 'strong_reduction'
 sr_df_time_setup = sr_df.join(adata.obs['time'])
 '''PCA of through time centered time as samples'''
 def pca_small_cen_time():
-    sr_df_time = sr_df.join(adata.obs['time']).reset_index().drop('index', axis=1).set_index('time').sort_index(ascending=True)
+    sr_df_time = sr_df.join(adata.obs['time']).reset_index().drop('index', axis=1).set_index('time')#.sort_index(ascending=True)
     pc.principal_component_3d_timesample(data=pc.residual(sr_df_time, ['time']), label='Time in h')
 '''PCA of through study centered time as samples'''
 def pca_small_cen_study():
     sr_df_study = sr_df.join(adata.obs['study']).join(sr_df_time_setup['time']).reset_index().drop('index', axis=1).set_index(['study', 'time'])
-    x = pc.residual(sr_df_study, ['study']).reset_index().drop(columns='study').set_index('time').sort_index(ascending=True)
+    x = pc.residual(sr_df_study, ['study']).reset_index().drop(columns='study').set_index('time')#.sort_index(ascending=True)
     pc.principal_component_3d_timesample(data=x, label='Time in h', c_map='twilight')
+    pc.principal_component_2d_timesample(data=x, x=2, y=3 ,label='Time in h')
 '''PCA of through sex centered time as samples'''
 def pca_small_cen_sex():
     sr_df_sex = sr_df.join(adata.obs['Sex']).join(sr_df_time_setup['time']).reset_index().drop('index', axis=1).set_index(['Sex', 'time'])

@@ -122,7 +122,7 @@ def principal_component_2d_timesample(data, label, x=1, y=2, c_map='tab20'):
                           alpha=0.8, s=30, edgecolors='black', linewidths=0.15)
     plt.legend(
         scatter.legend_elements(prop='colors', num=None)[0],
-        data.index.unique(),
+        pd.Series(data.index).astype('category').cat.categories,
         loc="center left",
         title=label,
         bbox_to_anchor=(1, 0.5),)
@@ -144,7 +144,7 @@ def principal_component_3d_timesample(data, label, x=1, y=2, z=3, pca_f=None, c_
 
     plt.legend(
         scatter.legend_elements(prop='colors', num=None)[0],
-        data.index.unique(),
+        pd.Series(data.index).astype('category').cat.categories,
         loc="center left",
         title=label,
         bbox_to_anchor=(1, 0.5),)
@@ -196,7 +196,7 @@ def visualization_of_dec_tools_3d(dec, data, label, x=1, y=2, z=3, c_map='tab20'
 
     plt.legend(
         scatter.legend_elements(prop='colors', num=None)[0],
-        data.index.unique(),
+        pd.Series(data.index).astype('category').cat.categories,
         loc="center left",
         title=label,
         bbox_to_anchor=(1, 0.5),)
